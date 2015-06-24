@@ -1,5 +1,49 @@
 'use strict';
 
+function createCard(suit, value){
+  var card = {};
+  card.suit = suit;
+  card.value = value;
+  card.image = cardImage(suit, value);
+  return card;
+}
+
+function cardImage(suit, value){
+  var suitCode, valueCode, prefix = '&#x1f0';
+  switch(suit){
+    case 'D':
+      suitCode = 'c';
+      break;
+    case 'H':
+      suitCode = 'b';
+      break;
+    case 'S':
+      suitCode = 'a';
+      break;
+    case 'C':
+      suitCode = 'd';
+      break;
+  }
+  valueCode = value;
+  switch(value){
+    case 'A':
+      valueCode = '1';
+      break;
+    case 'T':
+      valueCode = 'a';
+      break;
+    case 'J':
+      valueCode = 'b';
+      break;
+    case 'Q':
+      valueCode = 'd';
+      break;
+    case 'K':
+      valueCode = 'e';
+  }
+  return suit === '#' ? prefix + 'df' : prefix + suitCode + valueCode;
+}
+
 function DeckOfCards(){
   this.deck = [];
 }
@@ -7,12 +51,12 @@ function DeckOfCards(){
 DeckOfCards.prototype.createDeck = function(){
   var deckToCreate = this.deck;
   ['C', 'S', 'H', 'D'].forEach(function(suit){
-    [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A'].forEach(function(value){
-      deckToCreate.push(value + suit);
-    })
+    ['A', 2, 3, 4, 5, 6, 7, 8, 9, 'T', 'J', 'Q', 'K'].forEach(function(value){
+      deckToCreate.push(createCard(suit, value));
+    });
   });
-  deckToCreate.push('#1');
-  deckToCreate.push('#2');
+  deckToCreate.push(createCard('#', '1'));
+  deckToCreate.push(createCard('#', '2'));
 };
 
 DeckOfCards.prototype.shuffle = function(){
@@ -33,6 +77,7 @@ cards.createDeck();
 cards.shuffle();
 
 cards.deck.forEach(function(card){
-  var cardDisp = $('<div>' + card + '</div>');
+  var colorClass = card.suit === 'D' || card.suit === 'H' ? 'red' : 'black';
+  var cardDisp = $('<span class=' + colorClass + '>' + card.image + '</span>');
   $('#cards').append(cardDisp);
 });

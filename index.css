@@ -4,3 +4,12 @@
   width: 30px;
   text-align: center;
 }
+#cards span{
+  font-size: 120px;
+}
+#cards .red{
+  color: red;
+}
+#cards .black{
+  color: black;
+}
