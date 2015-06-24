@@ -1,0 +1,6 @@
+#cards div{
+  border: blue 1px solid;
+  height: 50px;
+  width: 30px;
+  text-align: center;
+}
