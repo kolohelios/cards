@@ -1,13 +1,5 @@
 'use strict';
 
-function createCard(suit, value){
-  var card = {};
-  card.suit = suit;
-  card.value = value;
-  card.image = cardImage(suit, value);
-  return card;
-}
-
 function cardImage(suit, value){
   var suitCode, valueCode, prefix = '&#x1f0';
   switch(suit){
@@ -24,7 +16,7 @@ function cardImage(suit, value){
       suitCode = 'd';
       break;
   }
-  valueCode = value;
+  valueCode = value; // or a non-integer value from the switch below
   switch(value){
     case 'A':
       valueCode = '1';
@@ -42,6 +34,37 @@ function cardImage(suit, value){
       valueCode = 'e';
   }
   return suit === '#' ? prefix + 'df' : prefix + suitCode + valueCode;
+}
+
+function pointsValue(suit, value){
+  if(suit === '#'){return 50;}
+  var ptsValue = value;
+  switch(value){
+    case 'A':
+      ptsValue = 20;
+      break;
+    case 'T':
+      ptsValue = 10;
+      break;
+    case 'J':
+      ptsValue = 10;
+      break;
+    case 'Q':
+      ptsValue = 10;
+      break;
+    case 'K':
+      ptsValue = 10;
+  }
+  return ptsValue;
+}
+
+function createCard(suit, value){
+  var card = {};
+  card.suit = suit;
+  card.value = value;
+  card.image = cardImage(suit, value);
+  card.points = pointsValue(suit, value);
+  return card;
 }
 
 function DeckOfCards(){
@@ -78,6 +101,6 @@ cards.shuffle();
 
 cards.deck.forEach(function(card){
   var colorClass = card.suit === 'D' || card.suit === 'H' ? 'red' : 'black';
-  var cardDisp = $('<span class=' + colorClass + '>' + card.image + '</span>');
+  var cardDisp = $('<span data=' + card.points + ' class=' + colorClass + '>' + card.image + '</span>');
   $('#cards').append(cardDisp);
 });
