@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="tic">
+<head>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.min.css">
+</head>
+
+<body ng-controller="OverviewCtrl">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6">
+        <form name="gamesettings">
+          <label for="playername"> name
+            <input class="form-control" id="playername" type="text" name="playername">
+          </label>
+          <!-- <label for="players"> Number of Players
+            <input class="form-control" id="players" type="number" min="2" max="8" name="players">
+          </label> -->
+        </form>
+        <button id="addplayer" class="btn btn-primary">Add Player</button>
+        <div class="btn btn-primary" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="list1" jqyoui-draggable="{animate:true}" ng-hide="!list1.title">{{list1.title}}</div>
+        <div class="thumbnail" data-drop="true" data-jqyoui-options ng-model="list2" jqyoui-droppable style='height:50px;'>
+        <div class="btn btn-success" data-drag="false" data-jqyoui-options ng-model="list2" jqyoui-draggable ng-hide="!list2.title">{{list2.title}}</div>
+    </div>
+    </div>
+      <div class="col-xs-6">
+        <p>List of Players</p>
+        <ul class="list-group">
+          <li class="list-group-item">test</li>
+          <li class="list-group-item">test</li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="jumbotron">
+        <div id="cards">
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="/vendor/angular/angular.min.js"></script>
+  <script src="/vendor/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="/vendor/firebase/firebase.js"></script>
+  <script src="/vendor/angularfire/dist/angularfire.min.js"></script>
+  <script src="/vendor/jquery-ui/jquery-ui.min.js"></script>
+  <script src="/vendor/angular-dragdrop/src/angular-dragdrop.min.js"></script>
+  <script src="/vendor/lodash/lodash.min.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>

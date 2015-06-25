@@ -1,7 +1,21 @@
+/* global $, document */
+
 'use strict';
 
+angular.module('tic', ['ngDragDrop'])
+.controller('OverviewCtrl', function($scope) {
+  $scope.list1 = {title: 'AngularJS - Drag Me'};
+  $scope.list2 = {};
+});
+
 var ticCloud = new Firebase('https://tic-kolohelios.firebaseio.com/');
-ticCloud.push('test');
+
+function init(){
+  $('#addplayer').click(addPlayer);
+  $('#startgame').click(dealer);
+}
+
+$(document).ready(init);
 
 function cardImage(suit, value){
   var suitCode, valueCode, prefix = '&#x1f0';
@@ -98,12 +112,24 @@ DeckOfCards.prototype.shuffle = function(){
   }
 };
 
-var cards = new DeckOfCards();
-cards.createDeck();
-cards.shuffle();
+var players = [];
 
-cards.deck.forEach(function(card){
-  var colorClass = card.suit === 'D' || card.suit === 'H' ? 'red' : 'black';
-  var cardDisp = $('<span data=' + card.points + ' class=' + colorClass + '>' + card.image + '</span>');
-  $('#cards').append(cardDisp);
-});
+function Player(name){
+  this.name = name;
+}
+
+function dealer(){
+  var cards = new DeckOfCards();
+  cards.createDeck();
+  cards.shuffle();
+  // cards.deck.forEach(function(card){
+  //   var colorClass = card.suit === 'D' || card.suit === 'H' ? 'red' : 'black';
+  //   var cardDisp = $('<span data=' + card.points + ' class=' + colorClass + '>' + card.image + '</span>');
+  //   $('#cards').append(cardDisp);
+  // });
+}
+
+function addPlayer(){
+  var playerName = $('#playername').val();
+  players.push(playerName);
+}
