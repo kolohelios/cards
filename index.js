@@ -1,5 +1,8 @@
 'use strict';
 
+var ticCloud = new Firebase('https://tic-kolohelios.firebaseio.com/');
+ticCloud.push('test');
+
 function cardImage(suit, value){
   var suitCode, valueCode, prefix = '&#x1f0';
   switch(suit){

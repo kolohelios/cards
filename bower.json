@@ -1,0 +1,23 @@
+{
+  "name": "cards",
+  "main": "index.js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/kolohelios/cards",
+  "authors": [
+    "Jon Edwards <jkedwards@me.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "jquery": "~2.1.4",
+    "firebase": "~2.2.7",
+    "lodash": "~3.9.3"
+  }
+}
