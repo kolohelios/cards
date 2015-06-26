@@ -1,5 +1,3 @@
-/* global $, document */
-
 'use strict';
 
 angular.module('tic')
@@ -8,4 +6,8 @@ angular.module('tic')
   $urlRouterProvider.otherwise('/');
   $stateProvider
   .state('home', {url: '/', templateUrl: '/views/home/home.html', controller: 'HomeCtrl'});
-}]);
+}])
+.run(function($rootScope, $window, $firebaseAuth, firebaseUrl){
+  $rootScope.fbRoot = new $window.Firebase(firebaseUrl);
+  $rootScope.afAuth = $firebaseAuth($rootScope.fbRoot);
+});

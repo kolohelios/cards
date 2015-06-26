@@ -22,6 +22,8 @@
     "angular-latest": "~1.4.1",
     "angular-dragdrop": "~1.0.11",
     "angularfire": "~1.1.2",
-    "ui-router": "~0.2.15"
+    "ui-router": "~0.2.15",
+    "components-font-awesome": "~4.3.0",
+    "sweetalert": "~1.0.1"
   }
 }

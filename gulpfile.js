@@ -15,7 +15,7 @@ var filePaths = {
 };
 
 gulp.task('default', function(callback){
-  run('clean', 'concatJS', 'copy', 'serve', 'watch', callback);
+  run('clean', 'copy', 'concatJS', 'serve', 'watch', callback);
 });
 
 gulp.task('serve', function(){
@@ -29,7 +29,7 @@ gulp.task('watch', function(){
 });
 
 gulp.task('refresh', function(){
-  run('clean', 'concatJS', 'copy', 'reload');
+  run('clean', 'copy', 'concatJS', 'reload');
 });
 
 gulp.task('reload', function(){
@@ -37,19 +37,17 @@ gulp.task('reload', function(){
 });
 
 gulp.task('copy', function(){
-  gulp.src('./client/*')
+  gulp.src('./client/**/*')
   .pipe(gulp.dest('./public/'));
-  del('public/index.js');
-  gulp.src('./temp/index.js')
-  .pipe(gulp.dest('public/'));
 });
 
-gulp.task('concatJS', function(){
+gulp.task('concatJS', function(callback){
   gulp.src(filePaths.codeSrc)
   .pipe(concat('index.js'))
-  .pipe(gulp.dest(filePaths.temp));
+  .pipe(gulp.dest('./public/'));
+  callback();
 });
 
 gulp.task('clean', function(callback){
-  del(['temp/*', 'public/index.*'], callback);
+  del(['temp/*', 'public/index.*', 'public/config/*', 'public/models/*', 'public/views/*'], callback);
 });

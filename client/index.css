@@ -1,3 +1,7 @@
+body{
+  background-image: url('assets/')
+
+}
 #cards div{
   border: blue 1px solid;
   height: 50px;
