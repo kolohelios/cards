@@ -1,0 +1,21 @@
+doctype html
+html(ng-app="tic")
+  head
+    link(rel="stylesheet", href="index.css")
+    link(rel="stylesheet", href="/vendor/bootstrap/dist/css/bootstrap.min.css")
+    link(rel="stylesheet", href="/vendor/components-font-awesome/css/font-awesome.min.css")
+    link(rel="stylesheet", href="/vendor/sweetalert/dist/sweetalert.css")
+  body
+    include views/nav/nav
+    div(ui-view)
+    script(src="/vendor/jquery/dist/jquery.min.js")
+    script(src="/vendor/angular/angular.min.js")
+    script(src="/vendor/bootstrap/dist/js/bootstrap.js")
+    script(src="/vendor/firebase/firebase.js")
+    script(src="/vendor/angularfire/dist/angularfire.min.js")
+    script(src="/vendor/ui-router/release/angular-ui-router.min.js")
+    script(src="/vendor/jquery-ui/jquery-ui.min.js")
+    script(src="/vendor/angular-dragdrop/src/angular-dragdrop.min.js")
+    script(src="/vendor/sweetalert/dist/sweetalert.min.js")
+    script(src="/vendor/lodash/lodash.min.js")
+    script(src="index.js")

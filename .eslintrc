@@ -1,9 +1,13 @@
 {
+  "env":{
+    "node": true
+  },
   "globals": {
     "angular": true
   },
   "rules": {
     "strict": [2, "global"],
+    "global-strict": 0,
     "quotes": [2, "single"]
   }
 }

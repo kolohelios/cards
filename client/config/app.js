@@ -7,7 +7,7 @@ angular.module('tic')
   $stateProvider
   .state('home', {url: '/', templateUrl: '/views/home/home.html', controller: 'HomeCtrl'});
 }])
-.run(function($rootScope, $window, $firebaseAuth, firebaseUrl){
+.run(['$rootScope', '$window', '$firebaseAuth', 'firebaseUrl', function($rootScope, $window, $firebaseAuth, firebaseUrl){
   $rootScope.fbRoot = new $window.Firebase(firebaseUrl);
   $rootScope.afAuth = $firebaseAuth($rootScope.fbRoot);
-});
+}]);

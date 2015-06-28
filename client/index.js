@@ -1,5 +1,3 @@
-/* global $, document */
-
 'use strict';
 
 angular.module('tic', ['ngDragDrop', 'ui.router', 'firebase']);

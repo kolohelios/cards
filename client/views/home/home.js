@@ -1,14 +1,14 @@
 'use strict';
 
 angular.module('tic')
-.controller('HomeCtrl', ['$window', '$scope', 'Player', '$state', function($window, $scope, Player, $state){
+.controller('HomeCtrl', ['$window', '$scope', 'Player', function($window, $scope, Player){
   $scope.name = 'register';
 
   $scope.submit = function(player, action){
     if(action === 'register'){
       Player.register(player)
       .then(function(){
-        $state.go('login');
+        $scope.name = 'login';
       })
       .catch(function(){
         $window.swal({title: 'Registration Error', text: 'There was a problem with your registration. Please try again.', type: 'error'});

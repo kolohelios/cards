@@ -1,3 +1,5 @@
+/* global require */
+
 'use strict';
 
 var browserSync = require('browser-sync');
@@ -6,16 +8,20 @@ var run = require('run-sequence');
 var watch = require('gulp-watch');
 var concat = require('gulp-concat');
 var del = require('del');
+var jade = require('gulp-jade');
 
 var filePaths = {
   src: ['./client/'],
   pub: ['./public/'],
   codeSrc: ['./client/**/*.js'],
+  jadeSrc: ['./client/**/*.jade'],
   temp: 'temp/'
 };
 
+var isProd = process.env.NODE_ENV === 'production';
+
 gulp.task('default', function(callback){
-  run('clean', 'copy', 'concatJS', 'serve', 'watch', callback);
+  run('clean', 'copy', 'jade', 'concatJS', 'serve', 'watch', callback);
 });
 
 gulp.task('serve', function(){
@@ -29,7 +35,7 @@ gulp.task('watch', function(){
 });
 
 gulp.task('refresh', function(){
-  run('clean', 'copy', 'concatJS', 'reload');
+  run('clean', 'copy', 'jade', 'concatJS', 'reload');
 });
 
 gulp.task('reload', function(){
@@ -46,6 +52,12 @@ gulp.task('concatJS', function(callback){
   .pipe(concat('index.js'))
   .pipe(gulp.dest('./public/'));
   callback();
+});
+
+gulp.task('jade', function() {
+  return gulp.src(filePaths.jadeSrc)
+    .pipe(jade({pretty: true, doctype: 'html', locals: {isProd: isProd}}))
+    .pipe(gulp.dest('./public/'));
 });
 
 gulp.task('clean', function(callback){
